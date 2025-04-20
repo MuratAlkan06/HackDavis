@@ -104,7 +104,7 @@ export default async function Home() {
   {/* <div className="w-36 h-10 px-6 py-1 left-[1233px] top-[48px] absolute rounded-[20px] outline outline-[3.50px] outline-offset-[-1.50px] outline-black inline-flex justify-center items-center gap-2.5">
     <div className="justify-start text-black text-2xl font-normal font-['Inter']">Log In</div>
   </div> */}
-{!session && (
+{!session ? (
   <div className="flex gap-4">
     <a href="/auth/login?screen_hint=signup">
       <div className="w-36 h-10 px-6 py-1 left-[1431px] top-[48px] absolute rounded-[20px] outline outline-[3.50px] outline-offset-[-1.50px] outline-black inline-flex justify-center items-center gap-2.5">
@@ -118,11 +118,12 @@ export default async function Home() {
       </div>
     </a>
   </div>
-)} 
+) : (
     <div className="absolute top-[48px] right-[50px] px-6 py-1 rounded-[20px] bg-lime-100 text-black text-2xl font-bold font-['Inter']">
       Welcome, {session.user?.name || 'User'}!
     </div>
-{/* 
+)
+    /* 
 
 return (
   <main>
