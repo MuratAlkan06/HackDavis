@@ -2,8 +2,9 @@ export default function CaretakerDashboard()
 {
     return (
         <main className="font-sans text-gray-800 p-6">
+            <div className="w-[fill] relative mx-auto max-w-[1440px] px-4">
             <div className="flex justify-between items-start mb-6">
-                <div className="w-20 h-20 bg-gray-300 rounded-full" />
+                <div className="w-[fill] h-20 bg-gray-300 rounded-full" />
 
                 <div className="flex flex-col items-center flex-1 text-center">
                     <h1 className="text 2xl font-semibold mb-2">Caretaker Dashboard</h1>
@@ -28,7 +29,7 @@ export default function CaretakerDashboard()
                     ))}
                 </div>
             </section>
-
+</div>
         </main>
     )
 }

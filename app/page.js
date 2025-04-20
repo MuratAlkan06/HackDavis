@@ -75,7 +75,7 @@ export default async function Home() {
     <div className="self-stretch justify-start text-black text-3xl font-normal font-['Inter']">Search your perfect match with personalized preferences and our special map.</div>
   </div>
   <div className="w-[1097px] left-[179px] top-[1110px] absolute justify-start"><span className="text-black text-3xl font-normal font-['Inter']">A platform where we bridge childcare </span><span className="text-black text-3xl font-extrabold font-['Inter']">safer</span><span className="text-black text-3xl font-normal font-['Inter']">, </span><span className="text-black text-3xl font-extrabold font-['Inter']">faster</span><span className="text-black text-3xl font-normal font-['Inter']">, and </span><span className="text-black text-3xl font-extrabold font-['Inter']">cheaper</span><span className="text-black text-3xl font-normal font-['Inter']"> for working families — and community members from all backgrounds can apply to become a certified one-on-one caretaker for these families.</span></div>
-  <div className="left-[630px] top-[661px] absolute justify-start text-white text-3xl font-bold font-['Inter']">Get Started! </div>
+  <a href="/getstarted"><div className="left-[630px] top-[661px] absolute justify-start text-white text-3xl font-bold font-['Inter']">Get Started! </div></a>
   <div className="left-[500px] top-[3692px] absolute justify-start text-cyan-800 text-5xl font-normal font-['Josefin_Sans']">Frequently Asked Questions!</div>
   <div className="w-full h-32 bg-lime-50 relative -z-10"></div>
   <div className="w-44 left-[660px] top-[35px] absolute inline-flex flex-col justify-start items-start gap-5">
@@ -283,14 +283,35 @@ return (
     </main>
 )}
 
-// export default function Home() {
-//   const { user } = useUser();
 
+// import { useUser } from '@auth0/nextjs-auth0/client';
+// import { useRouter } from 'next/router';
+
+// export default function LandingPage() {
+//   const router = useRouter();
+
+//   const handleGetStarted = () => {
+//     if (!session) {
+//       router.push('/auth/login');
+//     } else {
+//       router.push('/caretaker/dashboard');
+//     }
+//   };
+
+//   return (
+//     <button onClick={handleGetStarted} className="...">
+//       Get Started!
+//     </button>
+//   );
+// }
+
+
+// export default function Home() {
 //   return (
 //     <main>
 //       <h1>Welcome to Babysitter Connect</h1>
 
-//       {!user ? (
+//       {!session ? (
 //         <a href="/api/auth/login">Login</a>
 //       ) : (
 //         <>
