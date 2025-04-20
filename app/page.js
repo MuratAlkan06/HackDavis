@@ -30,7 +30,7 @@ import { auth0 } from "@/lib/auth0";
 //           <button>Log out</button>
 //         </a>
 //       </p>
-export default function HomePage() {
+export default function HomePage({ session }) {
   return (
     <main className="font-sans bg-[#fffaa8]">
       <nav className="flex justify-between items-center px-6 py-4 shadow-md bg-white">
@@ -43,23 +43,37 @@ export default function HomePage() {
         <div className="text-xl font-bold">BridgeCare</div>
 
         <div className="flex gap-3">
-  <a href="#" className="text-sm px-4 py-1 border border-gray-300 rounded hover:bg-gray-100">
-    Login
-  </a>
-  <a href="#" className="text-sm px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
-    Sign Up
-  </a>
-</div>
+          {!session ? (
+            <>
+              <a href="/auth/login" className="text-sm px-4 py-1 border border-gray-300 rounded hover:bg-gray-100">
+                Login
+              </a>
+              <a href="/auth/login?screen_hint=signup" className="text-sm px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+                Sign Up
+              </a>
+            </>
+          ) : (
+            <>
+              <span className="text-sm flex items-center gap-2">
+                <img src={session.user.picture} className="w-6 h-6 rounded-full" alt="profile" />
+                {session.user.name}
+              </span>
+              <a href="/auth/logout" className="text-sm px-4 py-1 border border-gray-300 rounded hover:bg-gray-100">
+                Log out
+              </a>
+            </>
+          )}
+        </div>
       </nav>
 
       <section className="text-center py-16 px-6 bg-[#fffaa8]">
-      <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-center">
-        Bridging your Gap to <br className="hidden sm:block" /> Safe, Certified Childcare.
-      </h2>
-      <p className="text-lg text-gray-600 mb-6">No more</p>
-      <a href="/Caretaker" className="inline-block bg-gradient-to-r from-pink-300 to-blue-400 text-black font-bold px-6 py-2 rounded-full shadow-md hover:opacity-90 transition">
-        Get Started!
-      </a>
+        <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-center">
+          Bridging your Gap to <br className="hidden sm:block" /> Safe, Certified Childcare.
+        </h2>
+        <p className="text-lg text-gray-600 mb-6">No more</p>
+        <a href="/Caretaker" className="inline-block bg-gradient-to-r from-pink-300 to-blue-400 text-black font-bold px-6 py-2 rounded-full shadow-md hover:opacity-90 transition">
+          Get Started!
+        </a>
       </section>
 
       <section className="py-12 px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
@@ -123,6 +137,15 @@ export default function HomePage() {
       </section>
     </main>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await auth0.getSession(context.req, context.res);
+  return {
+    props: {
+      session: session || null,
+    },
+  };
 }
 
 // export default function Home() {
